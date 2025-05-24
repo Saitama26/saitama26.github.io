@@ -8,7 +8,6 @@
   transition: all 0.7s ease-in-out;
 }
 
-
 img {
   max-width: 100%;
   height: auto;
@@ -141,6 +140,7 @@ img {
   text-align: center;
   text-transform: uppercase;
   list-style-type: none;
+  z-index: 1000;
 }
 
 @media (max-width: 767px) {
@@ -1228,6 +1228,46 @@ img {
   }
 }
 
+.example__title {
+  display: inline-block;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.example__title {
+  color: #333;
+  text-shadow: 
+    1px 1px 0 #ccc,
+    2px 2px 0 #bbb,
+    3px 3px 0 #aaa,
+    4px 4px 5px rgba(0,0,0,0.2),
+    0 0 10px rgba(0,0,0,0.1);
+} 
+
+/* Анимация 3D дрожания */
+@keyframes shake3d {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translate3d(-2px, -1px, -3px) rotate3d(1, 0.5, 0.2, 3deg);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translate3d(2px, 1px, 3px) rotate3d(-0.5, -0.2, -0.1, 3deg);
+  }
+}
+
+/* Применяем анимацию при hover */
+.example__title {
+  animation: shake3d 1.5s ease-in-out infinite;
+  text-shadow: 
+    1px 1px 0 #ccc,
+    2px 2px 0 #bbb,
+    3px 3px 0 #aaa,
+    4px 4px 5px rgba(0,0,0,0.2);
+}
+
 @media (max-width: 767px) {
   .example__title {
     margin-bottom: 40px;
@@ -1451,6 +1491,7 @@ img {
   }
 }
 
+
 .example__image {
   display: block;
   margin: 0 auto;
@@ -1471,6 +1512,60 @@ img {
     width: auto;
     height: 511px;
   }
+}
+
+/* Анимация для изображений при наведении */
+.example__image {
+  transition: all 0.5s ease-in-out;
+  transform-origin: center bottom; /* Точка трансформации снизу */
+}
+
+.example__image:hover {
+  animation: shakeAndScale 1.5s ease-in-out infinite;
+}
+
+/* Ключевые кадры анимации */
+@keyframes shakeAndScale {
+  0%, 100% {
+    transform: translateX(0) scale(1);
+  }
+  25% {
+    transform: translateX(-3px) scale(0.98);
+  }
+  50% {
+    transform: translateX(3px) scale(1.02);
+  }
+  75% {
+    transform: translateX(-2px) scale(0.99);
+  }
+}
+
+/* Для мобильных устройств уменьшаем анимацию */
+@media (max-width: 767px) {
+  @keyframes shakeAndScale {
+    0%, 100% {
+      transform: translateX(0) scale(1);
+    }
+    25% {
+      transform: translateX(-2px) scale(0.99);
+    }
+    50% {
+      transform: translateX(2px) scale(1.01);
+    }
+    75% {
+      transform: translateX(-1px) scale(0.995);
+    }
+  }
+}
+
+/* Особые стили для изображения "до" */
+.example__image--before:hover {
+  animation-delay: 0.1s; /* Небольшая задержка для разнообразия */
+}
+
+/* Особые стили для изображения "после" */
+.example__image--after:hover {
+  animation-delay: 0.2s;
 }
 
 @media (max-width: 767px) {
@@ -1923,5 +2018,5 @@ img {
 
 /* Добавляем animation-fill-mode: forwards, чтобы элемент оставался видимым после анимации */
 .scroll-animate.animate {
-  animation: fadeInLeft 0.8s ease-out forwards;
+  animation: fadeInLeft 0.5s ease-out forwards;
 }
