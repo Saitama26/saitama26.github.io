@@ -1,0 +1,177 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: clamp(16px, 4vw, 80px);
+}
+
+header, footer {
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-weight: bold;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.hamburger {
+  /* font-size: 32px; */
+  cursor: pointer;
+  user-select: none;
+  display: none;
+}
+
+.nav-list {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+}
+
+.nav-list li a {
+  color: white;
+  text-decoration: none;
+  font-size: clamp(12px 1vw 24px);
+}
+
+@media (max-width: 1024px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav {
+    width: 100%;
+  }
+
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    background: #34495e;
+    margin-top: 16px;
+    padding: 16px;
+    border-radius: 5px;
+    font-size: clamp(16px 1vw 24px);
+  }
+
+  .menu-toggle:checked + .hamburger + .nav .nav-list {
+    display: flex;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-list {
+    font-size: clamp(12px 1vw 16px);
+  }
+}
+
+@media (min-width: 1025px) {
+  .nav-list {
+    font-size: clamp(24px 1vw 32px);
+  }
+}
+
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 40px;
+}
+
+/* Секция с 12 блоками: 4 в строке */
+.section:first-of-type {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  background: #ecf0f1;
+  padding: 10px;
+}
+
+/* Общий вид .item */
+.item {
+  background: #dfe6e9;
+  padding: 30px;
+  text-align: center;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Сетка с заголовками 13–16 */
+.simple-grid {
+  display: grid;
+  grid-template-rows: repeat(4, auto) auto;
+  gap: 30px;
+  width: 100%;
+}
+
+/* Блоки .first (13–16): каждый на своей строке */
+.item.first {
+  background: #dff9fb;
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Центровка 17–20 в wrap-center */
+.wrap-center {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.wrap-center .item {
+  background: #c7ecee;
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #aaa;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  /* Планшеты: 2 столбца */
+  .section:first-of-type {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .wrap-center {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  /* Телефоны: 1 столбец */
+  .section:first-of-type {
+    grid-template-columns: 1fr;
+  }
+
+  .wrap-center {
+    grid-template-columns: 1fr;
+  }
+
+  .item {
+    padding: 20px;
+  }
+
+  .item.first {
+    padding: 10px;
+  }
+
+  .wrap-center .item {
+    padding: 10px;
+  }
+}

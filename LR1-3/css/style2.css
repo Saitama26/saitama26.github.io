@@ -1,0 +1,78 @@
+/* Общий стиль для секции */
+section {
+    max-width: 400px;
+    margin: 20px auto; /* Центрирование блока */
+    padding: 20px;
+    background-color: #f9f9f9; /* Легкий фон */
+    border-radius: 10px; /* Закругленные углы */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень */
+    font-family: Arial, sans-serif;
+}
+
+/* Заголовок */
+section h2 {
+    text-align: center;
+    color: #333; /* Темный цвет текста */
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Стили для меток */
+form label {
+    display: block; /* Отображение метки на отдельной строке */
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+/* Вспомогательный текст (формат телефона) */
+form small {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #888;
+}
+
+/* Поля ввода */
+form input {
+    width: 100%; /* Полная ширина контейнера */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box; /* Учитывать padding в размерах */
+}
+
+form input:focus {
+    border-color: #4CAF50; /* Зелёный цвет при фокусе */
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Кнопки */
+form button {
+    width: 48%; /* Делим кнопки на равную ширину */
+    padding: 10px;
+    margin-right: 2%; /* Небольшой отступ между кнопками */
+    background-color: #4CAF50; /* Зелёный цвет */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+form button:last-child {
+    margin-right: 0; /* Убираем отступ для последней кнопки */
+    background-color: #f44336; /* Красный цвет для кнопки очистки */
+}
+
+form button:last-child:hover {
+    background-color: #e53935; /* Более насыщенный красный при наведении */
+}

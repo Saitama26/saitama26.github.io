@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LR10-12</title>
+    <script>
+        let ShowSeconds = () => alert("Количество секунд: " + new Date().getSeconds());
+    </script>
+
+</head>
+<body>
+    <button onclick="ShowSeconds()">Получить количество секунл</button><br>
+
+    <script src="js/script.js"></script>
+    <script>
+
+        function PrintArray(arr) {
+            document.write("<br>");
+            for(let i = 0; i < arr.length; i++) {
+                document.write(arr[i] + " ");
+            }
+        }
+
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+          }
+
+        let i = 1;
+        do {
+            document.write("Петько Алексей " + i + "<br>");
+            i++;
+        }while(i <= 15)
+        document.write("<br>");
+
+
+        let arr = [];
+        for(let i = 0; i <= 10; i++) {
+            arr.push(getRandomInt(100));
+        }
+        PrintArray(arr);
+        
+        let count = 0;
+        for(let i = 0; i < arr.length; i++) {
+            if (arr[i] % 5 === 0) {
+                count++;
+                arr[i] = -10;
+            }
+        }
+
+        document.write("<br>Количество элементов кратное 5: " + count);
+        PrintArray(arr);
+
+        let a = prompt("Значение а: ", 1);
+        let b = prompt("Значение b: ", 1);
+        let c = prompt("Значение c: ", 1);
+
+        let res = formula(a, b, c); 
+        if( res !== undefined && res != Infinity ){ document.write("<br><br>Результат: " + res) }
+        
+        document.write("<br><br>");
+
+        let s1 = "Я люблю Беларусь";
+        let s2 = "Я учусь в политехническом колледже";
+
+        document.write("Длина строки s2: " + s2.length + "<br><br>");
+
+        if (s1.includes("Гомель")) document.write("Строка " + s1 + " содержит подстроку 'Гомель'<br>");
+        else document.write("Строка " + s1 + " не содержит подстроку 'Гомель'<br>");
+
+        document.write("10 элемент в строке s2: " + s2[10] + "<br>");
+        document.write("ASCCI код символа: " + s2.charCodeAt(10) );
+
+    </script>
+
+</body>
+</html>

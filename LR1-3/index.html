@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Пример HTML-страницы с выполнением различных заданий">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <title>Моя HTML страница</title>
+    <!-- <style>
+        @import url(css/style2.css);
+        p {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+    </style> -->
+</head>
+<body>
+    <header>
+        <h1 class="h1t" >My HTML page</h1>
+        <!-- <h1 style="color: blue; font-size: 20px; text-align:center;">Моя HTML страница</h1> -->
+    </header>
+
+    <nav id="list">
+        <ul>
+            <li><a href="#skills">Навыки</a></li>
+            <li><a href="#languages">Любимые ЯП</a></li>
+        </ul>
+    </nav>
+
+    <!-- Оформление текста -->
+    <main>
+        <div class="listsAndText">
+            <div id="text">
+                <h2>Текст</h2>
+                <p class="content">Это пример абзаца текста. Здесь мы используем <i>курсив</i>, <u>подчеркнутый</u>, <s>перечеркнутый</s> и <b>жирный</b> текст.</p>
+            </div>
+            
+            <!-- Списки -->
+            <div id="skills">
+                <h2>Мои навыки</h2>
+                <ul class="content">
+                    <li>Программирование на C#</li>
+                    <li>Создание UI элементов на C#</li>
+                    <li>SQL-запросы и управление базами данных</li>
+                </ul>
+            </div>
+
+            <div id="languages">
+                <h2>Любимые языки программирования и технологии</h2>
+                <ol class="content">
+                    <li>Python</li>
+                    <li>JavaScript</li>
+                    <li>HTML & CSS</li>
+                    <li>SQL</li>
+                </ol>
+            </div>
+
+            <pre class="tower">
+            S
+            A
+           LUT
+            M
+           O N
+           D  E
+           DONT
+          E SUIS
+          LA LAN
+         G U E  É
+        L O Q U E N
+       TE      QUESA
+      B  O  U  C  H  E
+     O        P A R I S
+    T I R E   ET   TIRERA
+   T O U             JOURS
+  AUX                  A  L
+LEM                      ANDS
+            </pre>  
+        </div>
+        <!-- Изображения -->
+        <div id="image">
+            <h2>Изображение</h2>
+            <a href="#MediaContent"><img src="photo1.png" alt="Фотография 1"></a>
+            
+        </div>
+
+        <!-- Аудио и видео-контент -->
+        <div id="MediaContent">
+            <h2>Аудио и видео-контент</h2>
+            <audio controls>
+                <source src="sound.mp3" type="audio/mpeg">
+                Ваш браузер не поддерживает элемент audio.
+            </audio>
+            <video controls width="300">
+                <source src="video1.mkv" type="video/mp4">
+                Ваш браузер не поддерживает элемент video.
+            </video>
+        </div>
+
+        <!-- Таблицы -->
+        <div class="table">
+            <h2>Таблицы</h2>
+            <table >
+                <tr>
+                    <th rowspan="2">Навык</th>
+                    <th colspan="2">Описание</th>
+                </tr>
+                <tr>
+                    <th>Уровень</th>
+                    <th>Опыт</th>
+                </tr>
+                <tr>
+                    <td>Программирование на C#</td>
+                    <td>junior</td>
+                    <td>1 год</td>
+                </tr>
+                <tr>
+                    <td>Создание UI элементов на C#</td>
+                    <td>junior</td>
+                    <td>1 год</td>
+                </tr>
+                <tr>
+                    <td>SQL-запросы и управление базами данных</td>
+                    <td>Средний</td>
+                    <td>1 год</td>
+                </tr>
+            </table>
+        </div>
+        
+        
+
+        <!-- Пользовательские формы -->
+        <section id="survey">
+            <h2>Опрос</h2>
+            <form action="/survey" method="post">
+                <label >Как вы оцениваете наш сайт?</label><br>
+                <input type="radio" id="q1a1" name="q1" value="excellent">
+                <label >Отлично</label><br>
+                <input type="radio" id="q1a2" name="q1" value="good">
+                <label >Хорошо</label><br>
+                <input type="radio" id="q1a3" name="q1" value="average">
+                <label >Средне</label><br>
+                <input type="radio" id="q1a4" name="q1" value="poor">
+                <label >Плохо</label><br><br>
+
+                <label>Выберите свой любимый ЯП:</label><br>
+                <input type="checkbox" id="1">
+                <label for="1">C#</label><br>
+                <input type="checkbox" id="2">
+                <label for="2">Java</label><br>
+                <input type="checkbox" id="3">
+                <label for="3">Pyhton</label>
+                <br><br>
+
+                <label for="comments">Комментарии:</label><br>
+                <textarea id="comments" name="comments" rows="4" cols="50"></textarea><br><br>
+
+                <input type="submit" value="Отправить">
+            </form>
+        </section>
+        
+
+
+        <!-- Выпадающий список -->
+        <p class="pPet-select">Выпадающий список</p>
+        <select name="pets" id="pet-select">
+        <option value="">--Please choose an option--</option>
+        <option value="dog">Собака</option>
+        <option value="cat">Кот</option>
+        <option value="hamster">Хомяк</option>
+        <option value="spider">Паук</option>
+        <option value="goldfish">Золотая рыбка</option>
+        </select>
+
+        <br>
+        <br>
+        <a class="Register" href="register.html">Форма регистрации</a>
+
+
+        <!-- Гиперссылки -->
+        <section>
+            <h2>Гиперссылки</h2>
+            <p>Внутренние ссылки: <a href="#skills">Навыки</a>, <a href="#languages">Любимые ЯП</a></p>
+            <p>Внешние ссылки: 
+                <a href="https://github.com/Saitama26" target="_blank">Мой GitHub</a>
+                <a href="https://t.me/KristopherKolumb/" target="_blank">Мой Telegram</a></p>
+        </section>
+
+        <!-- Спецсимволы -->
+        <section>
+            <h2>Спецсимволы</h2>
+            <p>Пример спецсимволов: &copy; &reg; &euro; &yen; &pound; &sect; &dagger; &Dagger; &hellip; &permil;</p>
+        </section>
+        
+
+        <!-- Анимация -->
+        <div class="animation">
+            <div class="square"></div>
+        </div>
+    </main>
+</body>
+</html>

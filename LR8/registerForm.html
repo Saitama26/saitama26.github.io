@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма входа и регистрации</title>
+    <link rel="stylesheet" href="style/registerStyle.css">
+</head>
+<body>
+    <h1>Войти в свой аккаунт</h1>
+    
+    <div class="form-container">
+        <!-- Колонка авторизации -->
+        <div class="auth-section">
+            <h2>Авторизация</h2>
+            
+            <div class="form-row">
+                <label for="email">E-mail:</label>
+                <div class="input-field">
+                    <input type="email" id="email" name="email" placeholder="Введите ваш email">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="password">Пароль:</label>
+                <div class="input-field">
+                    <input type="password" id="password" name="password" placeholder="Введите пароль">
+                </div>
+            </div>
+            
+            <div class="forgot-password">Забыли пароль?</div>
+            
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="remember"> Запомнить
+                </label>
+            </div>
+            
+            <button type="submit" class="submit-btn">Войти</button>
+        </div>
+        
+        <!-- Колонка регистрации -->
+        <div class="reg-section">
+            <h2>Регистрация</h2>
+            
+            <div class="form-row">
+                <label>Пол:</label>
+                <div class="gender-options">
+                    <label>
+                        <input type="radio" name="gender" value="female"> женский
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="male" checked> мужской
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="name">Ф.И.О.:</label>
+                <div class="input-field">
+                    <input type="text" id="name" name="name" placeholder="Иван Иванович">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="reg-email">E-mail:</label>
+                <div class="input-field">
+                    <input type="email" id="reg-email" name="reg-email" placeholder="example@mail.com">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="repeat-email">Повторите E-mail:</label>
+                <div class="input-field">
+                    <input type="email" id="repeat-email" name="repeat-email" placeholder="example@mail.com">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="reg-password">Пароль:</label>
+                <div class="input-field">
+                    <input type="password" id="reg-password" name="reg-password" placeholder="Придумайте пароль">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="repeat-password">Повторите пароль:</label>
+                <div class="input-field">
+                    <input type="password" id="repeat-password" name="repeat-password" placeholder="Повторите пароль">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label>Дата рождения:</label>
+                <div class="date-fields">
+                    <input type="text" value="1" maxlength="2">
+                    <select>
+                        <option>Январь</option>
+                        <option>Февраль</option>
+                        <option>Март</option>
+                        <option>Апрель</option>
+                        <option>Май</option>
+                        <option>Июнь</option>
+                        <option>Июль</option>
+                        <option>Август</option>
+                        <option>Сентябрь</option>
+                        <option>Октябрь</option>
+                        <option>Ноябрь</option>
+                        <option>Декабрь</option>
+                    </select>
+                    <input type="text" class="year" value="1970" maxlength="4">
+                </div>
+            </div>
+            
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="newsletter"> Я хочу получать сообщения и предложения
+                </label>
+            </div>
+            
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="terms"> Я принимаю условия использования
+                </label>
+            </div>
+            
+            <button type="submit" class="submit-btn">Отправить</button>
+        </div>
+    </div>
+    
+    <div class="no-reg">
+        Продолжить без регистрации
+    </div>
+</body>

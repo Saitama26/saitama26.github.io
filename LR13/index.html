@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комплексное задание по JavaScript и DOM</title>
+    <link rel="stylesheet" href="style/registerStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="FIO">Петько Алексей Павлович</div>
+    <div class="link"><a href="ggpk.by">Ссылка на любимый сайт</a></div>
+    <img src="https://wallpapers.com/images/hd/adorable-white-harp-seal-pup-1y77hda033xw0yl2.jpg"
+     alt="JavaScript Logo" width="192" height="108">
+
+     <ul id="nodeList">
+        <li>Узел 1</li>
+        <li>Узел 2</li>
+        <li>Узел 3</li>
+        <li>Узел 4</li>
+    </ul>
+    
+    <button onclick="swapNodes()">Переместить</button>
+    <button onclick="highlightFirst()">Переместить и окрасить</button>
+
+    <div class="form-container">
+        <!-- Колонка авторизации -->
+        <div class="auth-section">
+            <h2>Авторизация</h2>
+            
+            <div class="form-row">
+                <label for="email">E-mail: <span class="required">*</span></label>
+                <div class="input-field">
+                    <input type="email" id="email" name="email" placeholder="Введите ваш email" required
+                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    <i class="fas fa-check input-icon valid-icon"></i>
+                    <i class="fas fa-times input-icon error-icon"></i>
+                    <div class="error-message">Пожалуйста, введите корректный email</div>
+                    <div class="requirements">Пример: example@domain.com</div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="password">Пароль: <span class="required">*</span></label>
+                <div class="input-field">
+                    <input type="password" id="password" name="password" placeholder="Введите пароль" 
+                           minlength="6" maxlength="20" required>
+                    <i class="fas fa-check input-icon valid-icon"></i>
+                    <i class="fas fa-times input-icon error-icon"></i>
+                    <div class="error-message">Пароль должен содержать от 6 до 20 символов</div>
+                    <div class="requirements">Минимум 6 символов</div>
+                </div>
+            </div>
+            
+            <div class="forgot-password">Забыли пароль?</div>
+            
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="remember"> Запомнить
+                </label>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="login-btn">Войти</button>
+        </div>
+        
+        <!-- Колонка регистрации -->
+        <div class="reg-section">
+            <h2>Регистрация</h2>
+            
+            <div class="form-row">
+                <label>Пол: <span class="required">*</span></label>
+                <div class="gender-options">
+                    <label>
+                        <input type="radio" name="gender" value="female" required> женский
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="male" checked> мужской
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="name">Ф.И.О.: <span class="required">*</span></label>
+                <div class="input-field">
+                    <input type="text" id="name" name="name" placeholder="Иван Иванович" 
+                           minlength="5" maxlength="50" required
+                           pattern="^[А-Яа-яЁёA-Za-z\s]{5,50}$">
+                    <i class="fas fa-check input-icon valid-icon"></i>
+                    <i class="fas fa-times input-icon error-icon"></i>
+                    <div class="error-message">Введите полное имя (от 5 до 50 символов, только буквы)</div>
+                    <div class="requirements">Пример: Иванов Иван</div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="reg-email">E-mail: <span class="required">*</span></label>
+                <div class="input-field">
+                    <input type="email" id="reg-email" name="reg-email" placeholder="example@mail.com" 
+                           required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    <i class="fas fa-check input-icon valid-icon"></i>
+                    <i class="fas fa-times input-icon error-icon"></i>
+                    <div class="error-message">Пожалуйста, введите корректный email</div>
+                    <div class="requirements">Пример: example@domain.com</div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="repeat-email">Повторите E-mail: <span class="required">*</span></label>
+                <div class="input-field">
+                    <input type="email" id="repeat-email" name="repeat-email" placeholder="example@mail.com" 
+                           required>
+                    <i class="fas fa-check input-icon valid-icon"></i>
+                    <i class="fas fa-times input-icon error-icon"></i>
+                    <div class="error-message">Email должен совпадать</div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="reg-password">Пароль: <span class="required">*</span></label>
+                <div class="input-field">
+                    <input type="password" id="reg-password" name="reg-password" 
+                           placeholder="Придумайте пароль" minlength="6" maxlength="20" required>
+                    <i class="fas fa-check input-icon valid-icon"></i>
+                    <i class="fas fa-times input-icon error-icon"></i>
+                    <div class="error-message">Пароль должен содержать от 6 до 20 символов</div>
+                    <div class="requirements">Минимум 6 символов</div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="repeat-password">Повторите пароль: <span class="required">*</span></label>
+                <div class="input-field">
+                    <input type="password" id="repeat-password" name="repeat-password" 
+                           placeholder="Повторите пароль" minlength="6" maxlength="20" required>
+                    <i class="fas fa-check input-icon valid-icon"></i>
+                    <i class="fas fa-times input-icon error-icon"></i>
+                    <div class="error-message">Пароли должны совпадать</div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label>Дата рождения: <span class="required">*</span></label>
+                <div class="date-fields">
+                    <input type="text" id="birth-day" value="1" maxlength="2" 
+                           placeholder="День" required pattern="^(0?[1-9]|[12][0-9]|3[01])$">
+                    <select id="birth-month" required>
+                        <option value="">Месяц</option>
+                        <option value="1">Январь</option>
+                        <option value="2">Февраль</option>
+                        <option value="3">Март</option>
+                        <option value="4">Апрель</option>
+                        <option value="5">Май</option>
+                        <option value="6">Июнь</option>
+                        <option value="7">Июль</option>
+                        <option value="8">Август</option>
+                        <option value="9">Сентябрь</option>
+                        <option value="10">Октябрь</option>
+                        <option value="11">Ноябрь</option>
+                        <option value="12">Декабрь</option>
+                    </select>
+                    <input type="text" id="birth-year" class="year" value="" maxlength="4" 
+                           placeholder="Год" required pattern="^(19|20)\d{2}$">
+                </div>
+                <div class="error-message date-error" style="display: none;">Пожалуйста, введите корректную дату</div>
+            </div>
+            
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" id="newsletter" name="newsletter"> Я хочу получать сообщения и предложения
+                </label>
+            </div>
+            
+            <div class="checkbox-group" id="terms-group">
+                <label>
+                    <input type="checkbox" id="terms" name="terms" required> Я принимаю условия использования
+                    <span class="tooltip">
+                        <i class="fas fa-info-circle"></i>
+                        <span class="tooltiptext">Пожалуйста, ознакомьтесь с условиями использования</span>
+                    </span>
+                </label>
+                <div class="error-message terms-error" style="display: none;">Это поле обязательно</div>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="register-btn">Отправить</button>
+        </div>
+    </div>
+    
+     <script src="js/script1.js"></script>
+</body>
+</html>

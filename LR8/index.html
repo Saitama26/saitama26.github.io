@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Сложная сетка на Flexbox</title>
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/cardStyle.css">
+  <link rel="stylesheet" href="style/registerStyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+  <header>
+    <div class="logo">Шапка</div>
+  
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+    <label for="menu-toggle" class="hamburger">&#9776;</label>
+  
+    <nav class="nav">
+      <ul class="nav-list">
+        <li><a href="card.html">Главная</a></li>
+        <li><a href="card.html">О нас</a></li>
+        <li><a href="card.html">Услуги</a></li>
+        <li><a href="registerForm.html">Регистрация</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <div class="main-container">
+    <div class="section">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+        <div class="item">10</div>
+        <div class="item">11</div>
+        <div class="item">12</div>             
+    </div>
+    
+    <div class="section">
+        <div class="simple-grid">
+          <div class="item first">13</div>
+          <div class="item first">14</div>
+          <div class="item first">15</div>
+          <div class="item first">16</div>
+            <div class="wrap-center">
+              <div class="item">17</div>
+              <div class="item">18</div>
+              <div class="item">19</div>
+              <div class="item">20</div>
+            </div>
+          </div>
+      </div>
+
+      <div class="card">
+        <div class="product-container">
+          <!-- Левая колонка с изображениями -->
+          <div class="image-section">
+              <!-- Основное изображение -->
+              <div class="main-image">
+                  <img src="images/Снимок экрана 2025-06-23 144322.png" alt="Вращающаяся фоторамка куб 3D">
+              </div>
+              
+              <!-- Дополнительные миниатюры -->
+              <div class="thumbnail-row">
+                  <div class="thumbnail">
+                      <img class="thumbnail first" src="images/Снимок экрана 2025-06-23 144322.png" alt="Дополнительное изображение 1">
+                  </div>
+                  <div class="thumbnail">
+                      <img src="images/Снимок экрана 2025-06-23 144322.png" alt="Дополнительное изображение 2">
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Правая колонка с информацией -->
+          <div class="product-info">
+              <!-- Рейтинг и наличие -->
+              <div class="rating-availability">
+                  <div class="rating">
+                      <span class="star">★</span>
+                      <span class="star">★</span>
+                      <span class="star">★</span>
+                      <span class="star gray">★</span>
+                      <span class="star gray">★</span>
+                  </div>
+                  <div class="availability">Есть в наличии</div>
+              </div>
+              
+              <!-- Основная строка с ценой, количеством и кнопками -->
+              <div class="price-row">
+                  <!-- Цена слева -->
+                  <div class="price">39.90 руб.</div>
+                  
+                  <!-- Количество и сумма по центру -->
+                  <div class="quantity-section">
+                      <div class="quantity-selector">
+                          <button class="quantity-btn">-</button>
+                          <div class="quantity-value">1</div>
+                          <button class="quantity-btn">+</button>
+                      </div>
+                      <div class="total">Сумма: 39.90 руб.</div>
+                  </div>
+                  
+                  <!-- Кнопки справа -->
+                  <div class="buttons-column">
+                      <button class="action-btn cart-btn">В корзину</button>
+                      <button class="action-btn buy-btn">Купить в 1 клик</button>
+                  </div>
+              </div>
+              
+              <!-- Таблица с вариантами -->
+              <table class="options-table">
+                  <thead>
+                      <tr>
+                          <th>Кол-во</th>
+                          <th>Скидка</th>
+                          <th>Цена</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>2</td>
+                          <td>10%</td>
+                          <td>35.91 р</td>
+                      </tr>
+                      <tr>
+                          <td>3</td>
+                          <td>12%</td>
+                          <td>35.11 р</td>
+                      </tr>
+                      <tr>
+                          <td>4</td>
+                          <td>13%</td>
+                          <td>34.71 р</td>
+                      </tr>
+                      <tr class="selected-row">
+                          <td>>5</td>
+                          <td>15%</td>
+                          <td>33.92 р</td>
+                      </tr>
+                  </tbody>
+              </table>
+              
+              <!-- Информация о доставке -->
+              <div class="delivery-info">
+                  <button class="btnFindLowPrice">Нашли дешевле?</button>
+                  
+                  <span class="delivery-info item"><span class="mark">/</span>Доставка по Минску</span>
+                  <span class="delivery-info item">Курьером - сегодня, стоимость : 0 руб. <span class="check-mark">?</span></span>
+                  <span class="delivery-info item">Самовывоз из наших <a class="delivery-info text">магазинов</a> в Минске - сегодня, бесплатно.</span>
+                  <span class="delivery-info item"><a class="delivery-info text">О доставке по Беларуси</a> <span class="check-mark">?</span></span>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Форма регистрации и авторизации -->
+    <h1>Войти в свой аккаунт</h1>
+    
+    <div class="form-container">
+        <!-- Колонка авторизации -->
+        <div class="auth-section">
+            <h2>Авторизация</h2>
+            
+            <div class="form-row">
+                <label for="email">E-mail:</label>
+                <div class="input-field">
+                    <input type="email" id="email" name="email" placeholder="Введите ваш email">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="password">Пароль:</label>
+                <div class="input-field">
+                    <input type="password" id="password" name="password" placeholder="Введите пароль">
+                </div>
+            </div>
+            
+            <div class="forgot-password">Забыли пароль?</div>
+            
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="remember"> Запомнить
+                </label>
+            </div>
+            
+            <button type="submit" class="submit-btn">Войти</button>
+        </div>
+        
+        <!-- Колонка регистрации -->
+        <div class="reg-section">
+            <h2>Регистрация</h2>
+            
+            <div class="form-row">
+                <label>Пол:</label>
+                <div class="gender-options">
+                    <label>
+                        <input type="radio" name="gender" value="female"> женский
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="male" checked> мужской
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="name">Ф.И.О.:</label>
+                <div class="input-field">
+                    <input type="text" id="name" name="name" placeholder="Иван Иванович">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="reg-email">E-mail:</label>
+                <div class="input-field">
+                    <input type="email" id="reg-email" name="reg-email" placeholder="example@mail.com">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="repeat-email">Повторите E-mail:</label>
+                <div class="input-field">
+                    <input type="email" id="repeat-email" name="repeat-email" placeholder="example@mail.com">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="reg-password">Пароль:</label>
+                <div class="input-field">
+                    <input type="password" id="reg-password" name="reg-password" placeholder="Придумайте пароль">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label for="repeat-password">Повторите пароль:</label>
+                <div class="input-field">
+                    <input type="password" id="repeat-password" name="repeat-password" placeholder="Повторите пароль">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label>Дата рождения:</label>
+                <div class="date-fields">
+                    <input type="text" value="1" maxlength="2">
+                    <select>
+                        <option>Январь</option>
+                        <option>Февраль</option>
+                        <option>Март</option>
+                        <option>Апрель</option>
+                        <option>Май</option>
+                        <option>Июнь</option>
+                        <option>Июль</option>
+                        <option>Август</option>
+                        <option>Сентябрь</option>
+                        <option>Октябрь</option>
+                        <option>Ноябрь</option>
+                        <option>Декабрь</option>
+                    </select>
+                    <input type="text" class="year" value="1970" maxlength="4">
+                </div>
+            </div>
+            
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="newsletter"> Я хочу получать сообщения и предложения
+                </label>
+            </div>
+            
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="terms"> Я принимаю условия использования
+                </label>
+            </div>
+            
+            <button type="submit" class="submit-btn">Отправить</button>
+        </div>
+    </div>
+    
+    <div class="no-reg">
+        Продолжить без регистрации
+    </div>
+
+  <footer>Подвал</footer>
+
+</body>
+</html>

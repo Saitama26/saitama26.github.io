@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Connection</title>
+    <script src="js/script1.js"></script>
+
+    <script>
+        alert("Скрипт из head")
+    </script>
+      
+</head>
+<body>
+  <a href="javascript:alert('Привет, мир!')">Нажми на меня</a>
+ы
+    <button onclick="alert('Нажато!')">Нажми</button>
+    
+    <script>
+        console.log("Пример перед закрывающим body");
+        
+        alert("Добро пожаловать!");
+
+        let name = prompt("Введите ваше имя:");
+        if (name) {
+          let confirmSave = confirm("Сохранить имя: " + name + "?");
+          if (confirmSave) {
+            alert("Имя сохранено!");
+          } else {
+            alert("Отменено.");
+          }
+        } else {
+          alert("Имя не введено.");
+        }
+    </script>    
+</body>
+</html>
