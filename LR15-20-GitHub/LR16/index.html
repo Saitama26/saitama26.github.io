@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Breakout OOP JS</title>
+
+<style>
+    body {
+        background: #111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        color: #fff;
+        font-family: sans-serif;
+    }
+    canvas {
+        background: #000;
+        border: 2px solid #555;
+        display: block;
+    }
+</style>
+
+</head>
+
+<body>
+
+<canvas id="game" width="800" height="500"></canvas>
+<script>
+// ==== Классы игры ====
+
+class Paddle {
+    constructor(gameWidth, gameHeight) {
+        this.width = 120;
+        this.height = 15;
+        this.maxSpeed = 7;
+        this.speed = 0;
+        this.position = {
+            x: gameWidth / 2 - this.width / 2,
+            y: gameHeight - this.height - 10
+        };
+        this.gameWidth = gameWidth;
+    }
+
+    moveLeft() { this.speed = -this.maxSpeed; }
+    moveRight() { this.speed = this.maxSpeed; }
+    stop() { this.speed = 0; }
+
+    draw(ctx) {
+        ctx.fillStyle = "#0f0";
+        ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    }
+
+    update() {
+        this.position.x += this.speed;
+        if (this.position.x < 0) this.position.x = 0;
+        if (this.position.x + this.width > this.gameWidth) {
+            this.position.x = this.gameWidth - this.width;
+        }
+    }
+}
+
+class Ball {
+    constructor(gameWidth, gameHeight) {
+        this.image = null;
+        this.size = 10;
+        this.gameWidth = gameWidth;
+        this.gameHeight = gameHeight;
+        this.reset();
+    }
+
+    reset() {
+        this.position = { x: 400, y: 300 };
+        this.speed = { x: 4, y: -4 };
+    }
+
+    draw(ctx) {
+        ctx.fillStyle = "#ff0";
+        ctx.beginPath();
+        ctx.arc(this.position.x, this.position.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    update(paddle, bricks, game) {
+        this.position.x += this.speed.x;
+        this.position.y += this.speed.y;
+
+        // Столкновения со стенами
+        if (this.position.x - this.size < 0 || this.position.x + this.size > this.gameWidth) {
+            this.speed.x = -this.speed.x;
+        }
+        if (this.position.y - this.size < 0) {
+            this.speed.y = -this.speed.y;
+        }
+
+        // Потеря жизни
+        if (this.position.y - this.size > this.gameHeight) {
+            game.lives--;
+            this.reset();
+        }
+
+        // Столкновение с платформой
+        if (detectCollision(this, paddle)) {
+            this.speed.y = -this.speed.y;
+            this.position.y = paddle.position.y - this.size;
+        }
+
+        // Столкновение с кирпичами
+        bricks.forEach((brick, index) => {
+            if (detectCollision(this, brick)) {
+                this.speed.y = -this.speed.y;
+                bricks.splice(index, 1);
+                game.score += brick.points; // теперь учитываем очки кирпича
+            }
+        });
+    }
+}
+
+class Brick {
+    constructor(position, width, height, points = 10, color = "#f00") {
+        this.position = position;
+        this.width = width;
+        this.height = height;
+        this.points = points;
+        this.color = color;
+    }
+
+    draw(ctx) {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    }
+}
+
+// Новый класс — синий кирпич
+class BlueBrick extends Brick {
+    constructor(position, width, height) {
+        super(position, width, height, 30, "#00f"); 
+    }
+}
+
+
+class Game {
+    constructor(gameWidth, gameHeight) {
+        this.gameWidth = gameWidth;
+        this.gameHeight = gameHeight;
+        this.paddle = new Paddle(gameWidth, gameHeight);
+        this.ball = new Ball(gameWidth, gameHeight);
+        this.bricks = [];
+        this.lives = 3;
+        this.score = 0;
+        this.running = false;
+
+        this.buildLevel();
+    }
+
+    buildLevel() {
+        let brickRowCount = 5;
+        let brickColumnCount = 5;
+        let brickWidth = 80;
+        let brickHeight = 20;
+        let offsetTop = 50;
+        let offsetLeft = 35;
+        let padding = 10;
+    
+        for (let r = 0; r < brickRowCount; r++) {
+            for (let c = 0; c < brickColumnCount; c++) {
+                let x = offsetLeft + c * (brickWidth + padding);
+                let y = offsetTop + r * (brickHeight + padding);
+    
+                if (r % 2 === 0) {
+                    this.bricks.push(new Brick({ x, y }, brickWidth, brickHeight));
+                } else {
+                    this.bricks.push(new BlueBrick({ x, y }, brickWidth, brickHeight));
+                }
+            }
+        }
+    }
+    
+
+    update() {
+        if (!this.running) return;
+
+        this.paddle.update();
+        this.ball.update(this.paddle, this.bricks, this);
+
+        if (this.lives <= 0) {
+            this.running = false;
+            alert("Игра окончена! Счёт: " + this.score);
+        }
+
+        if (this.bricks.length === 0) {
+            this.running = false;
+            alert("Победа! Счёт: " + this.score);
+        }
+    }
+
+    draw(ctx) {
+        this.paddle.draw(ctx);
+        this.ball.draw(ctx);
+        this.bricks.forEach(brick => brick.draw(ctx));
+
+        ctx.fillStyle = "#fff";
+        ctx.font = "16px Arial";
+        ctx.fillText("Жизни: " + this.lives, 10, 20);
+        ctx.fillText("Счёт: " + this.score, 100, 20);
+    }
+}
+
+// ==== Вспомогательная функция ====
+function detectCollision(ball, gameObject) {
+    let bottomOfBall = ball.position.y + ball.size;
+    let topOfBall = ball.position.y - ball.size;
+
+    let topOfObject = gameObject.position.y;
+    let leftSide = gameObject.position.x;
+    let rightSide = gameObject.position.x + gameObject.width;
+    let bottomOfObject = gameObject.position.y + gameObject.height;
+
+    return (
+        bottomOfBall >= topOfObject &&
+        topOfBall <= bottomOfObject &&
+        ball.position.x >= leftSide &&
+        ball.position.x <= rightSide
+    );
+}
+
+// ==== Запуск игры ====
+let canvas = document.getElementById("game");
+let ctx = canvas.getContext("2d");
+
+let game = new Game(canvas.width, canvas.height);
+
+// Управление
+document.addEventListener("keydown", event => {
+    switch (event.code) {
+        case "ArrowLeft":
+            game.paddle.moveLeft();
+            break;
+        case "ArrowRight":
+            game.paddle.moveRight();
+            break;
+        case "Space":
+            game.running = !game.running;
+            break;
+    }
+});
+document.addEventListener("keyup", event => {
+    if (event.code === "ArrowLeft" && game.paddle.speed < 0) game.paddle.stop();
+    if (event.code === "ArrowRight" && game.paddle.speed > 0) game.paddle.stop();
+});
+
+// Игровой цикл
+function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    game.update();
+    game.draw(ctx);
+    requestAnimationFrame(gameLoop);
+}
+gameLoop();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторные работы 15–20 | ПСИП</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Unbounded:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --accent-hover: #79b8ff;
+      --green: #3fb950;
+      --orange: #d29922;
+      --purple: #a371f7;
+      --pink: #db61a2;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Фоновый градиент с мягкими кругами */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(88, 166, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(163, 113, 247, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 30% at 50% 90%, rgba(63, 185, 80, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    h1 {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .labs {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .lab-card {
+      display: block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .lab-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .lab-card .num {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .lab-card h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .lab-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .lab-card.lr15 { --card-accent: var(--green); }
+    .lab-card.lr16 { --card-accent: var(--orange); }
+    .lab-card.lr17 { --card-accent: var(--purple); }
+    .lab-card.lr20 { --card-accent: var(--pink); }
+
+    .lab-card .arrow {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: var(--card-accent, var(--accent));
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Лабораторные работы 15–20</h1>
+      <p class="subtitle">ПСИП — практические работы по JavaScript и веб-технологиям</p>
+    </header>
+
+    <nav class="labs">
+      <a href="LR15/index.html" class="lab-card lr15">
+        <span class="num">ЛР 15</span>
+        <h2>Объекты в JavaScript</h2>
+        <p>Создание объектов, свойства, методы, перебор и работа с JSON.</p>
+        <span class="arrow">→ Открыть</span>
+      </a>
+
+      <a href="LR16/index.html" class="lab-card lr16">
+        <span class="num">ЛР 16</span>
+        <h2>Breakout (OOP)</h2>
+        <p>Игра Breakout на классах: платформа, мяч, кирпичи, наследование.</p>
+        <span class="arrow">→ Открыть</span>
+      </a>
+
+      <a href="LR17/index.html" class="lab-card lr17">
+        <span class="num">ЛР 17</span>
+        <h2>Интерфейсные события</h2>
+        <p>Мышь, клавиатура, Drag & Drop, указатель, прокрутка, таймеры.</p>
+        <span class="arrow">→ Открыть</span>
+      </a>
+
+      <a href="LR20/index.html" class="lab-card lr20">
+        <span class="num">ЛР 20</span>
+        <h2>Регистрация и авторизация</h2>
+        <p>Формы, валидация, localStorage и cookies.</p>
+        <span class="arrow">→ Открыть</span>
+      </a>
+    </nav>
+
+    <footer>
+      Можно выложить эту папку на GitHub и открыть через GitHub Pages.
+    </footer>
+  </div>
+</body>
+</html>

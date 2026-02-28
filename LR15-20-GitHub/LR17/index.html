@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Демонстрация интерфейсных событий</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      height: 2000px; /* чтобы была прокрутка */
+    }
+    .block {
+      border: 2px solid #333;
+      padding: 20px;
+      margin: 20px 0;
+      min-height: 60px;
+    }
+    #dragTarget {
+      width: 100px; height: 100px;
+      background: #4caf50; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: grab;
+    }
+    #dropZone {
+      width: 200px; height: 120px;
+      border: 2px dashed #333;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 10px;
+    }
+    #pointerBox {
+      width: 150px; height: 150px;
+      background: lightblue;
+    }
+    #touchBox {
+      width: 150px; height: 150px;
+      background: pink;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Демонстрация интерфейсных событий</h1>
+
+<!-- 1. События мыши -->
+<div class="block" id="mouseBlock">
+  <strong>1. События мыши:</strong> наведите или кликните сюда.
+</div>
+
+<!-- 2. События клавиатуры -->
+<div class="block">
+  <strong>2. События клавиатуры:</strong><br>
+  <input type="text" id="keyboardInput" placeholder="Нажмите клавиши">
+  <p id="keyOutput"></p>
+</div>
+
+<!-- 3. Drag & Drop -->
+<div class="block">
+  <strong>3. Drag & Drop:</strong><br>
+  <div id="dragTarget" draggable="true">Перетащи</div>
+  <div id="dropZone">Зона сброса</div>
+</div>
+
+<!-- 4. События указателя -->
+<div class="block">
+  <strong>4. События указателя:</strong><br>
+  <div id="pointerBox">Наведи/кликни</div>
+  <p id="pointerOutput"></p>
+</div>
+
+<!-- 5. События полосы прокрутки -->
+<div class="block">
+  <strong>5. События прокрутки:</strong><br>
+  <p id="scrollOutput">Прокрутите страницу...</p>
+</div>
+
+<!-- 6. События сенсорных экранов -->
+<div class="block">
+  <strong>6. Сенсорные события (работает на телефоне):</strong><br>
+  <div id="touchBox">Тронь меня</div>
+  <p id="touchOutput"></p>
+</div>
+
+<!-- 7. Таймер -->
+<div class="block">
+  <strong>7. События таймера:</strong><br>
+  <button id="startTimer">Запустить таймер</button>
+  <p id="timerOutput"></p>
+</div>
+
+<!-- 8. Разные методы подключения -->
+<div class="block">
+  <strong>8. Методы подключения событий:</strong><br>
+  <!-- Метод 1: HTML-атрибут -->
+  <button onclick="alert('Сработал HTML-атрибут!')">HTML-атрибут</button>
+  <!-- Метод 2: свойство DOM -->
+  <button id="btn2">element.onclick</button>
+  <!-- Метод 3: addEventListener -->
+  <button id="btn3">addEventListener</button>
+</div>
+
+<script>
+// 1. События мыши
+const mouseBlock = document.getElementById("mouseBlock");
+mouseBlock.addEventListener("click", () => {
+  mouseBlock.style.background = "yellow";
+  mouseBlock.textContent = "Клик мыши!";
+});
+mouseBlock.addEventListener("mouseenter", () => {
+  mouseBlock.style.background = "lightgreen";
+});
+mouseBlock.addEventListener("mouseleave", () => {
+  mouseBlock.style.background = "";
+  mouseBlock.textContent = "1. События мыши: наведите или кликните сюда.";
+});
+
+// 2. События клавиатуры
+const input = document.getElementById("keyboardInput");
+const keyOutput = document.getElementById("keyOutput");
+input.addEventListener("keydown", e => {
+  keyOutput.textContent = "Нажата клавиша: " + e.key;
+});
+
+// 3. Drag & Drop
+const dragTarget = document.getElementById("dragTarget");
+const dropZone = document.getElementById("dropZone");
+
+dragTarget.addEventListener("dragstart", e => {
+  e.dataTransfer.setData("text/plain", "Перетащенный элемент");
+});
+dropZone.addEventListener("dragover", e => {
+  e.preventDefault();
+  dropZone.style.background = "#ddd";
+});
+dropZone.addEventListener("dragleave", () => {
+  dropZone.style.background = "";
+});
+dropZone.addEventListener("drop", e => {
+  e.preventDefault();
+  dropZone.textContent = "Элемент сброшен!";
+  dropZone.style.background = "lightyellow";
+});
+
+// 4. События указателя
+const pointerBox = document.getElementById("pointerBox");
+const pointerOutput = document.getElementById("pointerOutput");
+pointerBox.addEventListener("pointerdown", () => {
+  pointerOutput.textContent = "Pointer down!";
+});
+pointerBox.addEventListener("pointerenter", () => {
+  pointerOutput.textContent = "Pointer enter!";
+});
+pointerBox.addEventListener("pointerleave", () => {
+  pointerOutput.textContent = "Pointer leave!";
+});
+
+// 5. События прокрутки
+const scrollOutput = document.getElementById("scrollOutput");
+window.addEventListener("scroll", () => {
+  scrollOutput.textContent = "Прокрутка Y: " + window.scrollY;
+});
+
+// 6. Сенсорные события
+const touchBox = document.getElementById("touchBox");
+const touchOutput = document.getElementById("touchOutput");
+touchBox.addEventListener("touchstart", () => {
+  touchOutput.textContent = "Коснулись!";
+});
+touchBox.addEventListener("touchend", () => {
+  touchOutput.textContent = "Отпустили!";
+});
+
+// 7. Таймер
+const startTimer = document.getElementById("startTimer");
+const timerOutput = document.getElementById("timerOutput");
+startTimer.addEventListener("click", () => {
+  let count = 5;
+  timerOutput.textContent = "Обратный отсчёт: " + count;
+  let interval = setInterval(() => {
+    count--;
+    timerOutput.textContent = "Обратный отсчёт: " + count;
+    if (count === 0) {
+      clearInterval(interval);
+      timerOutput.textContent = "Время вышло!";
+    }
+  }, 1000);
+});
+
+// 8. Методы подключения событий
+// Метод 2: свойство DOM
+document.getElementById("btn2").onclick = function() {
+  alert("Сработал element.onclick!");
+};
+
+// Метод 3: addEventListener
+document.getElementById("btn3").addEventListener("click", function() {
+  alert("Сработал addEventListener!");
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Объекты в JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        pre {
+            background: #222;
+            color: #0f0;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Демонстрация работы с объектами в JavaScript</h1>
+<div id="output"></div>
+
+<script>
+    let output = document.getElementById("output");
+
+    // 1. Создание объекта
+    let car = {
+        brand: "Toyota",
+        model: "Camry",
+        year: 2020,
+        start: function() {
+            return "Двигатель запущен";
+        }
+    };
+
+    let car2 = {
+        brand: "BMV",
+        model: "m5",
+        year: 2024,
+        start: function() {
+            return "Двигатель запущен";
+        }
+    };
+
+    let car3 = {
+        brand: "Mercedes",
+        model: "GT",
+        year: 2022,
+        start: function() {
+            return "Двигатель запущен";
+        }
+    };
+
+    let arr = [car, car2, car3];
+
+    // Вывод объекта
+    output.innerHTML += "<h2>1. Объект:</h2><pre>" + JSON.stringify(car, null, 2) + "</pre>";
+
+    // 2. Доступ к свойствам
+    output.innerHTML += "<h2>2. Доступ к свойствам:</h2>";
+    output.innerHTML += "<pre>Марка: " + car.brand + "\nМодель: " + car["model"] + "</pre>";
+
+    // 3. Удаление свойства
+    delete car.year;
+    output.innerHTML += "<h2>3. После удаления свойства year:</h2><pre>" + JSON.stringify(car, null, 2) + "</pre>";
+
+    // 4. Проверка существования свойства
+    output.innerHTML += "<h2>4. Проверка существования:</h2>";
+    output.innerHTML += "<pre>'brand' in car → " + ("brand" in car) + "\n'year' in car → " + ("year" in car) + "</pre>";
+
+    // 5. Перебор свойств
+    output.innerHTML += "<h2>5. Перебор свойств:</h2><pre>";
+    for (let key in car) {
+        output.innerHTML += key + ": " + car[key] + "\n";
+    }
+    output.innerHTML += "</pre>";
+
+    // 6. Вызов метода объекта
+    output.innerHTML += "<h2>6. Вызов метода:</h2><pre>" + car.start() + "</pre>";
+
+    for (let i = 0; i < arr.length; i++) {
+        output.innerHTML += "<h2>" + i + " Объект:</h2><pre>" + JSON.stringify(arr[i], null, 2) + "</pre>";
+    }
+
+
+</script>
+
+</body>
+</html>
